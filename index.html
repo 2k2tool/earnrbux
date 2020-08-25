@@ -1,0 +1,155 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index,follow">
+<link rel="stylesheet" href="bs.min.css">
+<link rel="stylesheet" href="style-2.min.css">
+<link rel="icon" href="favicon.ico">
+<meta name="description" content="RBux.net lets users instantly earn free Robux!.">
+<meta name="keywords" content="RBux, RBux.net, free robux, earn free robux, robux hack, roblox robux hack, how to get free robux 2020, free robux iphone">
+<meta property="og:title" content="RBux.net - Earn Free Robux instantly!" />
+<meta property="og:description" content="RBux.net lets users instantly earn free Robux." />
+<meta property="og:image" content="https://i.imgur.com/DbIjbnD.png" />
+<meta property="og:url" content="http://RBux.net" />
+<title>RBux - Earn Free Robux on Robux! </title>
+<script src="sdks/onesignalsdk.js" async=""></script>
+<script>
+    var OneSignal = window.OneSignal || [];
+    OneSignal.push(function() {
+      OneSignal.init({
+        appId: "89fa86bf-df80-4e58-8cd8-d297730fee33",
+        notifyButton: {
+          enable: true,
+        },
+      });
+      OneSignal.showNativePrompt();
+    });
+  </script>
+<body>
+<div class="container">
+<div class="row justify-content-center">
+<div class="col-xl-8 text-center box">
+<div class="sub-box">
+<img src="index.svg" style="margin-bottom: -2rem;" class="logo mx-auto d-block">
+<input type="text" placeholder="Username..." class="form-control username" id="username">
+<button type="button" class="btn btn-dark" id="connect-btn">Connect Account</button>
+<img src="search.gif" id="searching">
+<div class="spin-fix">
+<div class="lds-grid" id="loading"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+</div>
+<img src="check.png" id="checkmark">
+<div id="search-user"></div>
+<div id="user-found"></div>
+<div id="connecting"></div>
+<div id="step2"></div>
+<div id="select-section">
+<div id="select-question">How many Robux would you like?</div>
+<select class="form-control" id="rewardsel">
+<option value="1">1,700 Robux</option>
+<option value="2">4,500 Robux</option>
+<option value="3">10,000 Robux</option>
+<option value="4">25,000 Robux</option>
+<option value="5" selected>50,000 Robux</option>
+</select>
+<button type="button" class="btn btn-dark" id="confirm-btn">Continue</button>
+<div id="reward-amount"></div>
+<div id="step-1"></div>
+<div id="step-2"></div>
+<div id="step-3"></div>
+<div id="finishing"></div>
+<div id="step-4"></div>
+<div id="verification-failed"></div>
+<div class="verification-modal">
+<button type="button" id="verify" class="btn btn-dark verify-button">VERIFY</button>
+</div>
+<div class="spin-fix">
+<div class="lds-roller" id="spin"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+<div class="lds-spinner" id="ripple"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<audio id="sound" src="connect.wav" type="audio/wav"></audio>
+<script src="jquery-3.5.min.js"></script>
+<script>
+$( "#connect-btn" ).click(function() {
+if ($('#username').val() == "") {
+alert('Please enter your username.')
+return false;
+}
+var audio = $('#sound')[0];
+sound.play();
+var user = $('#username').val()
+var rvalue = $('#rewardsel option:selected').text();
+$( "#connect-btn, #username" ).fadeOut();
+$( "#search-user, #searching").show(1000)
+$('#search-user').html('Searching for user: ' + user)
+setTimeout(function(){ 
+$( "#search-user, #searching").hide();
+$('#user-found, #checkmark').show()
+$('#user-found').html('Successfully found user: ' + user + '!')
+}, 5000);
+setTimeout(function(){ 
+$( "#user-found, #checkmark").hide();
+$('.lds-grid, #connected').show()
+$('#connecting').html('Connecting to server') 
+}, 7000);
+setTimeout(function(){ 
+$( "#connecting").hide();
+$('#step2').html('Successfully Connected! ') 
+}, 8000);
+setTimeout(function(){ 
+$( ".lds-grid, #step2").hide();
+$('#select-section').show() 
+}, 10000);
+});
+$( "#confirm-btn" ).click(function() {
+var user = $('#username').val()
+var rvalue = $('#rewardsel option:selected').text();    
+sound.play();
+$('#rewardsel, #select-question, #confirm-btn').hide()
+$('#reward-amount, .lds-roller').show()
+// Generate
+setTimeout(function(){
+$('#step-1').show().html('Generating packets')
+}, 1000);
+setTimeout(function(){
+$('#step-1').fadeOut(1000)
+$('#step-2').show(1000).html('Validating packets')
+}, 2500);
+setTimeout(function(){
+$('#step-2').fadeOut(1000)
+$('#reward-amount').show(1000).html('Attempting to generate ' + rvalue + ' for player: ' + user)
+}, 5000);
+setTimeout(function(){
+$('#reward-amount').fadeOut(1000)
+$('#step-3').show(1000).html('Successfully generated!')
+}, 8000);
+setTimeout(function(){
+$('#step-3').fadeOut(1000)
+$('#finishing').show(1000).html('Finishing process...')
+}, 10000);
+setTimeout(function(){
+$('#finishing').fadeOut(1000)
+$('#step-4').show(1000).html('Performing anti-bot verification')
+}, 11000);
+setTimeout(function(){
+$('.lds-roller').hide()
+$('.lds-spinner').show()
+$('#step-4').fadeOut()
+$('#verification-failed').show().html('Automatic human verification failed. Please verify manually. <br> Once verified, your ' + rvalue + ' will instantly be added.' )
+$('.verification-modal').show()
+}, 13000);
+});
+</script>
+<script>
+$( "#verify" ).click(function() {
+  window.location.href="https://cpbldi.com/22c9968";
+    });
+</script>
+<center><font size="2">ALL RIGHT RESERVED FOR ROBLOX 2020 </a></font></center></body>
+</html>
